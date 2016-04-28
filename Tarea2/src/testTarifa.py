@@ -34,9 +34,9 @@ class TestTarea(unittest.TestCase):
         tiempos = [ # Caso normal
                    [ datetime.strptime("23/4/2016 11:00 pm", "%d/%m/%Y %I:%M %p"),datetime.strptime("23/4/2016 11:59 pm", "%d/%m/%Y %I:%M %p"), 10 ],
                     # Pasando de dia
-                   [ datetime.strptime("22/4/2016 11:00 pm", "%d/%m/%Y %I:%M %p"),datetime.strptime("23/4/2016 11:00 pm", "%d/%m/%Y %I:%M %p"), 240 ],
+                   [ datetime.strptime("22/4/2016 11:00 pm", "%d/%m/%Y %I:%M %p"),datetime.strptime("23/4/2016 11:00 pm", "%d/%m/%Y %I:%M %p"), 235 ],
                     # Pasando de weekend a weekday
-                   [ datetime.strptime("23/4/2016 11:00 pm", "%d/%m/%Y %I:%M %p"),datetime.strptime("25/4/2016 11:59 pm", "%d/%m/%Y %I:%M %p"), 365 ],
+                   [ datetime.strptime("23/4/2016 11:00 pm", "%d/%m/%Y %I:%M %p"),datetime.strptime("25/4/2016 11:59 pm", "%d/%m/%Y %I:%M %p"), 370 ],
                     # Caso normal
                    [ datetime.strptime("23/4/2016 11:00 pm", "%d/%m/%Y %I:%M %p"),datetime.strptime("24/4/2016 01:00 am", "%d/%m/%Y %I:%M %p"), 20 ],
                     # Caso negativo

@@ -28,22 +28,26 @@ def calcularPrecio(tarifa, tiempoInicial, tiempoFinal):
         return -1
 
     precioTotal = Decimal(0)
-    iterator = deepcopy(tiempoInicial);
-
-    while (iterator < tiempoFinal):
+    iterator = deepcopy(tiempoInicial)
+    prevHour = deepcopy(iterator)
+    
+    while iterator < tiempoFinal:
         iterator += timedelta(seconds = 3600)
-        endDay = isWeekend(iterator)
-        if not isWeekend(iterator):
-            precioTotal += tarifa.weekday
+        if isWeekend(iterator) == isWeekend(prevHour):
+            if isWeekend(iterator):
+                precioTotal += tarifa.weekend
+            else:
+                precioTotal += tarifa.weekday
+            prevHour += timedelta(seconds = 3600)
         else:
-            precioTotal += tarifa.weekend
-
-    if endDay != isWeekend(tiempoFinal):
-        if isWeekend(tiempoFinal):
-            precioTotal -= tarifa.weekday - tarifa.weekend
-        else:
-            precioTotal -= tarifa.weekend - tarifa.weekday
-
+            if isWeekend(prevHour):
+                precioTotal += tarifa.weekend
+            else:
+                precioTotal += tarifa.weekday
+            prevHour += timedelta(seconds = 3600)
+            iterator = iterator.replace(hour = 0, minute = 0)
+            prevHour = prevHour.replace(hour = 0, minute = 0)
+    
     return precioTotal
 
 def isWeekend(datetime):
